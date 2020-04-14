@@ -1,5 +1,7 @@
 # coding: utf-8
 """
+API
+
 В этой задаче вам необходимо воспользоваться API сайта artsy.net
 API проекта Artsy предоставляет информацию о некоторых деятелях искусства, их работах, выставках.
 
@@ -14,6 +16,18 @@ Client Secret	45cefcfef9434d89f3cbe17eafa70c15
 
 import requests
 import json
+
+
+def getArtists(id):
+    # инициируем запрос с заголовком
+    r = requests.get("https://api.artsy.net/api/artists/"+id, headers=headers)
+    # r.encoding = 'utf-8'
+    # text = r.text
+    #text =
+    # разбираем ответ сервера
+    j = json.loads(r.content.decode('utf-8'))
+    return (j['sortable_name'], int(j['birthday']), id)
+
 
 client_id = '08c8433a09a9a0e70cc5'
 client_secret = '45cefcfef9434d89f3cbe17eafa70c15'
@@ -33,16 +47,6 @@ token = j["token"]
 
 # создаем заголовок, содержащий наш токен
 headers = {"X-Xapp-Token": token}
-
-def getArtists(id):
-    # инициируем запрос с заголовком
-    r = requests.get("https://api.artsy.net/api/artists/"+id, headers=headers)
-    # r.encoding = 'utf-8'
-    # text = r.text
-    #text =
-    # разбираем ответ сервера
-    j = json.loads(r.content.decode('utf-8'))
-    return (j['sortable_name'], int(j['birthday']), id)
 
 # id = '4f86f41a24907b0001000d46'  https://api.artsy.net/api/artists/4f86f41a24907b0001000d46
 # print(getArtists(id))

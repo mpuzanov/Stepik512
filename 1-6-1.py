@@ -10,32 +10,32 @@
 
 '''
 
-#import sys
-#sys.stdin = open("input_1-6-1.txt", "r")
+# import sys
+# sys.stdin = open("input_1-6-1.txt", "r")
 
 n = int(input())
-cl={}
+cl = {}
 for i in range(n):
-    s=input()
+    s = input()
     if ':' in s:
         s1, s2 = s.split(':')
-        cl[s1.strip()]=s2.split()
+        cl[s1.strip()] = s2.split()
     else:
-        cl[s]=[]
-print(cl)    
+        cl[s] = []
+print(cl)
 q = int(input())
 for i in range(q):
-    b=False
+    b = False
     s1, s2 = input().split()
     if s1 in cl[s2] or s1 == s2:
-        b=True 
+        b = True
     else:
         if s2 in cl:
-            #print(s2,'есть в cl')
+            # print(s2,'есть в cl')
             for j in range(len(cl[s2])):
-                k=cl[s2][j]
-                #print(k)
+                k = cl[s2][j]
+                # print(k)
                 if k in cl and s1 in cl[k]:
-                    b=True
-                    
+                    b = True
+
     print('Yes' if b else 'No')
